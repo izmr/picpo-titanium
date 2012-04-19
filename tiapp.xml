@@ -8,13 +8,13 @@
         <target device="blackberry">false</target>
     </deployment-targets>
     <sdk-version>2.0.1.GA2</sdk-version>
-    <id>com.marimofire.sample</id>
+    <id>com.picpo</id>
     <name>Sample20120419</name>
     <version>1.0</version>
-    <publisher>marimofire</publisher>
-    <url>http://sample.marimofire.com</url>
-    <description>not specified</description>
-    <copyright>2012 by marimofire</copyright>
+    <publisher>Picpo Project</publisher>
+    <url>http://picpo.com</url>
+    <description>Picpo!</description>
+    <copyright>2012 by Picpo Project</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
