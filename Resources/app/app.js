@@ -1,8 +1,9 @@
-tt = {};
-console = {};
+tt = {}; // Top level namespace
+config = {}; // Global config namespace
 
 /**
- * main logic 
+ * main logic
+ * @author Izumori Tatsuya <tatsuya.izumori@gmail.com>
  */
 (function() {
 	tt.login = {data:null};
@@ -14,6 +15,9 @@ console = {};
 	};
 })();
 
+/**
+ * include all libraries
+ */
 Ti.include(
 	'/lib/core.js',
 	'/app/config.js',

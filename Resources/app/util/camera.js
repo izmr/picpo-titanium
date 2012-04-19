@@ -1,5 +1,9 @@
 tt.util.camera = {};
 
+/**
+ * camera
+ * @author Izumori, Tatsuya <tatsuya.izumori@gmail.com>
+ */
 (function() {
 	tt.util.camera.open = function(callback) {
 		Ti.Media.showCamera({

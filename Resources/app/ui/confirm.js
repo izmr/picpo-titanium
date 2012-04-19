@@ -1,5 +1,9 @@
 tt.ui.confirm = {};
 
+/**
+ * confirm images
+ * @author Izumori, Tatsuya <tatsuya.izumori@gmail.com>
+ */
 (function(){
 	tt.ui.confirm.createWindow = function(image) {
 		var win = Ti.UI.createWindow({

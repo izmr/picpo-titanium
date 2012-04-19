@@ -1,5 +1,10 @@
 tt.ui.register = {};
 
+/**
+ * register username and password
+ * It may not be required.
+ * @author Izumori, Tatsuya <tatsuya.izumori@gmail.com>
+ */
 (function(){
 	tt.ui.register.createWindow = function() {
 		var win = tt.ui.createModalWindow({

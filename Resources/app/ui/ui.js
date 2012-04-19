@@ -1,5 +1,9 @@
 tt.ui = {};
 
+/**
+ * ui.js main logic
+ * @author Izumori, Tatsuya <tatsuya.izumori@gmail.com>
+ */
 (function() {
 	/**
 	 * return main window
@@ -102,6 +106,9 @@ tt.ui = {};
 	}
 })();
 
+/**
+ * include all uis
+ */
 Ti.include(
 	'/app/ui/register.js',
 	'/app/ui/confirm.js'
