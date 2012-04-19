@@ -60,8 +60,12 @@ tt.ui = {};
 		});
 		
 		cameraButton.addEventListener('click', function(){
-			Ti.API.debug("cameraButton");
-			tt.util.camera.open();
+			Ti.API.info("cameraButton");
+			tt.util.camera.open(function(image){
+				Ti.API.info(image);
+				var win = tt.ui.confirm.createWindow(image);
+				win.open();
+			});
 		});
 		
 		view.add(label);
@@ -99,5 +103,6 @@ tt.ui = {};
 })();
 
 Ti.include(
-	'/app/ui/register.js'
+	'/app/ui/register.js',
+	'/app/ui/confirm.js'
 );
