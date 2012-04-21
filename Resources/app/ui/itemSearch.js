@@ -70,20 +70,36 @@ tt.ui.itemSearch = {};
 	 * search view
 	 */
     tt.ui.itemSearch.createSearchView = function () {
-        var view = Ti.UI.createView({
+        var view = Ti.UI.createScrollView({
             layout: 'vertical',
             top:100,
-            height: 'auto',
-            width: 'auto'
+ //           height: 'auto',
+   //         width: 'auto',
+            showVerticalScrollIndicator:true,
+        	contentWidth:'auto',
+    		contentHeight:'auto'
         });
         
         view.add(tt.ui.itemSearch.createSearchBar());
         
-        ['商品名１', '商品名２', '商品名３','商品名４', '商品名５', '商品名６'].forEach(function(itemName){
-        	view.add(tt.ui.itemSearch.createItemView(itemName));
-        });
+        view.add(tt.ui.itemSearch.createSearchResultView());
 
         return view;
+    }
+    
+    tt.ui.itemSearch.createSearchResultView = function() {
+    	var scrollView = Ti.UI.createScrollView({
+    		layout: 'vertical',
+            showVerticalScrollIndicator:true,
+        	contentWidth:'auto',
+    		contentHeight:'auto'
+    	});
+    	
+    	['商品名１', '商品名２', '商品名３','商品名４', '商品名５', '商品名６'].forEach(function(itemName){
+        	scrollView.add(tt.ui.itemSearch.createItemView(itemName));
+        });
+        
+        return scrollView;
     }
     
     tt.ui.itemSearch.createItemView = function(itemName) {
