@@ -6,28 +6,45 @@ tt.ui = {};
  */
 (function() {
 	/**
-	 * return main window
+	 * return top window
 	 */
 	tt.ui.createApplicationWindow = function()
-	{
+	{	
+		// create top window
 		var win = Ti.UI.createWindow({
-			title: 'sample',
+			title: 'Picpo! top page',
 			backgroundColor: '#FFFFFF'
 		});
 		
-		win.add(tt.ui.createTitleView());
+		// create tab
+		var tab = Ti.UI.createTab({
+			window: win
+		});
 		
-		return win;
+		// create tab group
+		var tabGroup = Ti.UI.createTabGroup();
+		tabGroup.addTab(tab);
+		
+		// create top view
+		win.add(tt.ui.createTitleView(function(image){
+			Ti.API.info(image);
+			var win = tt.ui.confirm.createWindow(image);
+			tab.open(win);
+			//win.open();
+		}));
+		
+		return tabGroup;
 	}
 	
 	/**
 	 * show title view
+	 * only camera icon
 	 */
-	tt.ui.createTitleView = function ()
+	tt.ui.createTitleView = function (callback)
 	{
 		var view = Ti.UI.createView({
-			backgroundColor: '#000',
-			layout: 'vertical' // 上から順番に並べる
+			backgroundColor: '#EEE',
+			//layout: 'vertical' // 上から順番に並べる
 		});
 		
 		var label = Ti.UI.createLabel({
@@ -39,41 +56,22 @@ tt.ui = {};
 			width: 'auto',
 			color: '#F00',
 			height: 'auto',
-			top: 5 // relative position(vertical)
+			top: 100 // relative position(vertical)
 			//top: 100 // absolute position
 		});
 		
-		var button = Ti.UI.createButton({
-			title: 'Sign up',
-			width: 100,
-			height: 30,
-			top: 5 // relative position(vertical)
-			//top: 120 // absolute position
-		});
-		
-		button.addEventListener('click', function(){
-			var win = tt.ui.register.createWindow();
-			win.open({modal: true});
-		});
-		
 		var cameraButton = Ti.UI.createButton({
-			title: 'camera',
-			width: 100,
-			height: 30,
-			top: 5
+			title: 'Take a photo',
+			width: 200,
+			height: 100,
+			top: 130
 		});
 		
-		cameraButton.addEventListener('click', function(){
-			Ti.API.info("cameraButton");
-			tt.util.camera.open(function(image){
-				Ti.API.info(image);
-				var win = tt.ui.confirm.createWindow(image);
-				win.open();
-			});
+		cameraButton.addEventListener('click', function() {
+			tt.util.camera.open(callback);
 		});
 		
 		view.add(label);
-		view.add(button);
 		view.add(cameraButton);
 		
 		return view;
