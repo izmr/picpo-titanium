@@ -27,11 +27,13 @@ tt.ui = {};
 		
 		// create top view
 		win.add(tt.ui.createTitleView(function(image){
-			Ti.API.info(image);
 			var win = tt.ui.confirm.createWindow(image);
 			tab.open(win);
 			//win.open();
 		}));
+		
+		// set tabGroup as global variables 
+		tt.ui.topTabGroup = tabGroup;
 		
 		return tabGroup;
 	}
@@ -109,5 +111,6 @@ tt.ui = {};
  */
 Ti.include(
 	'/app/ui/register.js',
-	'/app/ui/confirm.js'
+	'/app/ui/confirm.js',
+	'/app/ui/searchStart.js'
 );

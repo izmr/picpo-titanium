@@ -1,7 +1,7 @@
 tt.util.camera = {};
 
 /**
- * camera
+ * tt.util.camera
  * @author Izumori, Tatsuya <tatsuya.izumori@gmail.com>
  */
 (function() {

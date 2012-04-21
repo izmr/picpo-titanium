@@ -52,9 +52,9 @@ tt.ui.confirm = {};
 			left: 100
 		});
 		
-		// close button
+		// return to camera window
 		ngButton.addEventListener('click', function(){
-			Ti.UI.currentWindow.close();
+			Ti.UI.currentTab.close();
 		});
 		
 		// the ok button
@@ -62,6 +62,12 @@ tt.ui.confirm = {};
 			title: "OK",
 			top: 320,
 			right: 100
+		});
+		
+		// go to search page
+		okButton.addEventListener('click', function(){
+			var nextWin = tt.ui.searchStart.createWindow(image);
+			tt.ui.topTabGroup.getActiveTab().open(nextWin);
 		});
 		
 		view.add(label);
