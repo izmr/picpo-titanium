@@ -112,5 +112,6 @@ tt.ui = {};
 Ti.include(
 	'/app/ui/register.js',
 	'/app/ui/confirm.js',
+	'/app/ui/itemSearch.js',
 	'/app/ui/searchStart.js'
 );

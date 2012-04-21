@@ -6,47 +6,115 @@ tt.ui.itemSearch = {};
  * @author YUya, Kakui <y.kakui@gmail.com>
  */
 (function(){
-    tt.ui.itemSearch.createWindow = function() {
+    tt.ui.itemSearch.createWindow = function(image) {
         var win = tt.ui.createModalWindow({
-            title: 'Item Search'
+            title: 'Item Search',
+            layout: 'vertical'
         });
 
-        win.add(tt.ui.itemSearch.createView());
+		win.add(tt.ui.itemSearch.createTopView(image));
+        win.add(tt.ui.itemSearch.createSearchView());
 
         return win;
     }
+    
+    /**
+     * show affiliate information
+     * if some items is choiced, this information will be changed.
+     */
+    tt.ui.itemSearch.createTopView = function (image) {
+    	var view = Ti.UI.createView({
+    		height: 'auto',
+    		width: 'auto',
+    		top: 0
+    	});
+    	
+    	var label = Ti.UI.createLabel({
+			text: "[商品名がここに入る]",
+			width: 'auto',
+			height: 20,
+			left: 100,
+			top: 50,
+			font: {
+				fontColor: '#111'
+			}
+		});
+		
+		// set iten name label as a global variables
+		tt.ui.itemSearch.itemNameLabel = label;
+		
+		view.add(label);
+    	
+    	view.add(tt.ui.itemSearch.createImageView(image));
+    	
+    	return view;
+    }
+    
+	/**
+	 * create camera image view
+	 * @param {Object} image
+	 */
+	tt.ui.itemSearch.createImageView = function(image) {
+		var view = Ti.UI.createImageView({
+			width: 60,
+			height: 60,
+			top: 20,
+			left: 30,
+			image: image
+		});
+		
+		return view;
+	}
 
-    tt.ui.itemSearch.createView = function () {
+	/**
+	 * search view
+	 */
+    tt.ui.itemSearch.createSearchView = function () {
         var view = Ti.UI.createView({
-            layout: 'vertical'
+            layout: 'vertical',
+            top:100,
+            height: 'auto',
+            width: 'auto'
         });
-        view.add(Ti.UI.createLabel({
-            top: 5,
-            title: 'aaa'
-        }));
-
-        var searchButton = Titanium.UI.createButton({
-            title:'検索',
-//            color:'#ff0000',
-            height:30,
-            width:100,
-              top:100
+        
+        view.add(tt.ui.itemSearch.createSearchBar());
+        
+        ['商品名１', '商品名２', '商品名３','商品名４', '商品名５', '商品名６'].forEach(function(itemName){
+        	view.add(tt.ui.itemSearch.createItemView(itemName));
         });
-
-        searchButton.addEventListener('click', function(e){
-            // ...
-        });
-
-        var textField1 = Ti.UI.createTextField({
-            width:200,
-            height:30,
-            borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-            hintText: '検索ワード入力'
-        });
-
-        view.add(textField1);
-        view.add(searchButton);
 
         return view;
+    }
+    
+    tt.ui.itemSearch.createItemView = function(itemName) {
+    	var itemView = Ti.UI.createView({
+        	height: 50,
+        	width: 'auto',
+        	top: 5
+        });
+        
+        var itemNameLabel = Ti.UI.createLabel({
+        	text: itemName,
+        	width: 'auto',
+        	left: 10
+        });
+        
+        itemView.add(itemNameLabel);
+        
+        itemView.addEventListener('click', function(){
+        	tt.ui.itemSearch.itemNameLabel.setText(itemName);
+        });
+        
+        return itemView;
+    }
+    
+    tt.ui.itemSearch.createSearchBar = function () {
+    	var searchBar = Titanium.UI.createSearchBar({
+	        barColor:'#000', 
+	        showCancel:true,
+	        height:40,
+		});
+		
+		return searchBar;
     }
 })();

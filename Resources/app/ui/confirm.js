@@ -66,7 +66,7 @@ tt.ui.confirm = {};
 		
 		// go to search page
 		okButton.addEventListener('click', function(){
-			var nextWin = tt.ui.searchStart.createWindow(image);
+			var nextWin = tt.ui.itemSearch.createWindow(image);
 			tt.ui.topTabGroup.getActiveTab().open(nextWin);
 		});
 		
